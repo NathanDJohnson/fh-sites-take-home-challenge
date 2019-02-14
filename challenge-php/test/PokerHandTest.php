@@ -17,6 +17,34 @@ class PokerHandTest extends TestCase
     /**
      * @test
      */
+    public function itCanRankAnInvalidHand2()
+    {
+        $hand = new PokerHand('As Ks Qs Js 0s');
+        $this->assertEquals('Invalid Hand', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankAnInvalidHand3()
+    {
+        $hand = new PokerHand('Hs As Qs Js 10s');
+        $this->assertEquals('Invalid Hand', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankAnInvalidHand4()
+    {
+        $hand = new PokerHand('16s As Qs Js 10s');
+        $this->assertEquals('Invalid Hand', $hand->getRank());
+    }
+
+
+    /**
+     * @test
+     */
     public function itCanRankARoyalFlush()
     {
         $hand = new PokerHand('As Ks Qs Js 10s');
@@ -97,12 +125,31 @@ class PokerHandTest extends TestCase
         $this->assertEquals('Three of a Kind', $hand->getRank());
     }
 
+
+    /**
+     * @test
+     */
+    public function itCanRankThreeKind3()
+    {
+        $hand = new PokerHand('Ks 7h 7d 7c 5d');
+        $this->assertEquals('Three of a Kind', $hand->getRank());
+    }
+
     /**
      * @test
      */
     public function itCanRankTwoPair()
     {
         $hand = new PokerHand('Kh Kc 3s 3h 2d');
+        $this->assertEquals('Two Pair', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankTwoPair2()
+    {
+        $hand = new PokerHand('Kh Kc 3s 2h 2d');
         $this->assertEquals('Two Pair', $hand->getRank());
     }
 

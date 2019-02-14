@@ -55,6 +55,13 @@ class PokerHand
 
     protected function isInvalidHand() : bool
     {
+        foreach( $this->cards as $card )
+        {
+            if( $card->getValue() < 2 || $card->getValue() > 14 )
+            {
+                $this->invalid = true;
+            }
+        }
         return $this->invalid;
     }
 
@@ -124,6 +131,7 @@ class PokerHand
     {
         return $this->isTwoPair() && (
             $this->cards[0]->getValue() === $this->cards[2]->getValue() ||
+            $this->cards[1]->getValue() === $this->cards[3]->getValue() ||
             $this->cards[2]->getValue() === $this->cards[4]->getValue()
         );
     }
