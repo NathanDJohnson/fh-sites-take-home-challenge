@@ -17,10 +17,57 @@ class PokerHandTest extends TestCase
     /**
      * @test
      */
-    public function itCanRankAPair()
+    public function itCanRankAStraightFlush()
     {
-        $hand = new PokerHand('Ah As 10c 7d 6s');
-        $this->assertEquals('One Pair', $hand->getRank());
+        $hand = new PokerHand('Ks Qs Js 10s 9s');
+        $this->assertEquals('Straight Flush', $hand->getRank());
+    }
+
+
+    /**
+     * @test
+     */
+    public function itCanRankFourKind()
+    {
+        $hand = new PokerHand('Ks Kh Kd Kc 3h');
+        $this->assertEquals('Four of a Kind', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankFullHouse()
+    {
+        $hand = new PokerHand('Ks Kh Kd 3c 3h');
+        $this->assertEquals('Full House', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankAFlush()
+    {
+        $hand = new PokerHand('Kh Qh 6h 2h 9h');
+        $this->assertEquals('Flush', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankAStraight()
+    {
+        $hand = new PokerHand('Ks Qh Jh 10c 9h');
+        $this->assertEquals('Straight', $hand->getRank());
+    }
+
+
+    /**
+     * @test
+     */
+    public function itCanRankThreeKind()
+    {
+        $hand = new PokerHand('Ks Kh Kd 2c 3h');
+        $this->assertEquals('Three of a Kind', $hand->getRank());
     }
 
     /**
@@ -35,11 +82,19 @@ class PokerHandTest extends TestCase
     /**
      * @test
      */
-    public function itCanRankAFlush()
+    public function itCanRankAPair()
     {
-        $hand = new PokerHand('Kh Qh 6h 2h 9h');
-        $this->assertEquals('Flush', $hand->getRank());
+        $hand = new PokerHand('Ah As 10c 7d 6s');
+        $this->assertEquals('One Pair', $hand->getRank());
     }
 
-    // TODO: More tests go here
+    /**
+     * @test
+     */
+    public function itCanRankHighCard()
+    {
+        $hand = new PokerHand('Ks 10h 6d 2c 3h');
+        $this->assertEquals('High Card', $hand->getRank());
+    }
+
 }
