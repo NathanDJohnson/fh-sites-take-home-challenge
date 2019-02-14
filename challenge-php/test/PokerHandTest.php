@@ -41,6 +41,23 @@ class PokerHandTest extends TestCase
         $this->assertEquals('Invalid Hand', $hand->getRank());
     }
 
+    /**
+     * @test
+     */
+    public function itCanRankAnInvalidHand5()
+    {
+        $hand = new PokerHand('Ac As Qs Js');
+        $this->assertEquals('Invalid Hand', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
+    public function itCanRankAnInvalidHand6()
+    {
+        $hand = new PokerHand('Ac As Qs Js 10s 6c');
+        $this->assertEquals('Invalid Hand', $hand->getRank());
+    }
 
     /**
      * @test

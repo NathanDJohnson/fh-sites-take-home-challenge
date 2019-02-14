@@ -48,7 +48,10 @@ class PokerHand
     protected function checkInvalid( array $cards )
     {
         $this->invalid = false;
-        if( count( $cards ) !== count( array_unique( $cards ) ) ) {
+        if(
+            count( $cards ) !== 5 ||
+            count( $cards ) !== count( array_unique( $cards ) )
+        )  {
             $this->invalid = true;
         }
     }
