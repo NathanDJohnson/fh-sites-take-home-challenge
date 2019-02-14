@@ -4,6 +4,7 @@ namespace PokerHand;
 
 class PokerHand
 {
+    protected $invalid;
     protected $cards = [];
     protected $kinds = [];
 
@@ -11,6 +12,7 @@ class PokerHand
     {
         $hand = str_replace( [ 'A', 'K', 'Q', 'J' ], [ '14', '13', '12', '11' ] , $hand );
         $cards = explode( ' ', $hand );
+        $this->checkInvalid( $cards );
 
         foreach( $cards as $card )
         {
@@ -41,6 +43,19 @@ class PokerHand
             }
         }
         $this->kinds = array_unique( $this->kinds );
+    }
+
+    protected function checkInvalid( array $cards )
+    {
+        $this->invalid = false;
+        if( count( $cards ) !== count( array_unique( $cards ) ) ) {
+            $this->invalid = true;
+        }
+    }
+
+    protected function isInvalidHand() : bool
+    {
+        return $this->invalid;
     }
 
     protected function isRoyalFlush() : bool
@@ -125,6 +140,11 @@ class PokerHand
 
     public function getRank() : string
     {
+        if( $this->isInvalidHand() )
+        {
+            return 'Invalid Hand';
+        }
+
         if( $this->isRoyalFlush() )
         {
             return 'Royal Flush';

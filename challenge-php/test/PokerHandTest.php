@@ -8,6 +8,15 @@ class PokerHandTest extends TestCase
     /**
      * @test
      */
+    public function itCanRankAnInvalidHand()
+    {
+        $hand = new PokerHand('As As Qs Js 10s');
+        $this->assertEquals('Invalid Hand', $hand->getRank());
+    }
+
+    /**
+     * @test
+     */
     public function itCanRankARoyalFlush()
     {
         $hand = new PokerHand('As Ks Qs Js 10s');
@@ -84,7 +93,7 @@ class PokerHandTest extends TestCase
      */
     public function itCanRankThreeKind2()
     {
-        $hand = new PokerHand('Ks 5h 7d 5c 5h');
+        $hand = new PokerHand('Ks 5h 7d 5c 5d');
         $this->assertEquals('Three of a Kind', $hand->getRank());
     }
 
