@@ -65,8 +65,10 @@ class PokerHand
 
     protected function isFourKind() : bool
     {
-        return $this->isFullHouse() &&
-            $this->cards[0]->getValue() === $this->cards[3]->getValue();
+        return $this->isFullHouse() && (
+            $this->cards[0]->getValue() === $this->cards[3]->getValue() ||
+            $this->cards[1]->getValue() === $this->cards[4]->getValue()
+        );
     }
 
     protected function isFullHouse() : bool
@@ -105,8 +107,10 @@ class PokerHand
 
     protected function isThreeKind() : bool
     {
-        return $this->isTwoPair() &&
-            $this->cards[0]->getValue() === $this->cards[2]->getValue();
+        return $this->isTwoPair() && (
+            $this->cards[0]->getValue() === $this->cards[2]->getValue() ||
+            $this->cards[2]->getValue() === $this->cards[4]->getValue()
+        );
     }
 
     protected function isTwoPair() : bool
